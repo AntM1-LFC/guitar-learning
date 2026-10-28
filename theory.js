@@ -78,6 +78,23 @@ function chromaticName(pc) {
   return SHARP_NAMES[((pc % 12) + 12) % 12];
 }
 
+// Chord-tone intervals (semitones from root) per quality, for audio playback
+// fallback when there's no fretted diagram (e.g. diminished triads).
+const CHORD_TONE_INTERVALS = {
+  maj: [0, 4, 7],
+  min: [0, 3, 7],
+  dim: [0, 3, 6],
+  maj7: [0, 4, 7, 11],
+  min7: [0, 3, 7, 10],
+  dom7: [0, 4, 7, 10],
+  m7b5: [0, 3, 6, 10],
+};
+
+function chordPitchClasses(rootNote, quality) {
+  const rootPc = pitchClass(rootNote);
+  return CHORD_TONE_INTERVALS[quality].map(iv => (rootPc + iv) % 12);
+}
+
 // Diatonic 7th-chord qualities, degree-aligned with MAJOR_ROMAN / MINOR_ROMAN.
 const MAJOR_DEGREE_QUALITIES_7TH = ['maj7', 'min7', 'min7', 'maj7', 'dom7', 'min7', 'm7b5'];
 const MINOR_DEGREE_QUALITIES_7TH = ['min7', 'm7b5', 'maj7', 'min7', 'min7', 'maj7', 'dom7'];
@@ -235,19 +252,19 @@ function scaleIntervalSet(rootNote, type) {
 // ---------------------------------------------------------------------------
 
 const PENTATONIC_BOXES = [
-    [[0, 3], [0, 2], [0, 2], [0, 2], [0, 3], [0, 3]],      // Box 1
-    [[3, 5], [2, 5], [2, 5], [2, 4], [3, 5], [3, 5]],      // Box 2
-    [[5, 7], [5, 7], [5, 7], [4, 7], [5, 8], [5, 7]],      // Box 3
-    [[7, 10], [7, 10], [7, 9], [7, 9], [8, 10], [7, 10]],  // Box 4
-    [[10, 12], [10, 12], [9, 12], [9, 12], [10, 12], [10, 12]], // Box 5
-  ];
+  [[0, 3], [0, 2], [0, 2], [0, 2], [0, 3], [0, 3]],      // Box 1
+  [[3, 5], [2, 5], [2, 5], [2, 4], [3, 5], [3, 5]],      // Box 2
+  [[5, 7], [5, 7], [5, 7], [4, 7], [5, 8], [5, 7]],      // Box 3
+  [[7, 10], [7, 10], [7, 9], [7, 9], [8, 10], [7, 10]],  // Box 4
+  [[10, 12], [10, 12], [9, 12], [9, 12], [10, 12], [10, 12]], // Box 5
+];
 
 // minorRootNote: the minor tonic's plain note name, e.g. "A" for A minor.
 function pentatonicBoxShapes(minorRootNote) {
-    const rootPc = pitchClass(minorRootNote);
-    const base = ((rootPc - OPEN_STRING_PC[0]) + 12) % 12;
-    return PENTATONIC_BOXES.map((box, i) => ({
-          number: i + 1,
-          frets: box.map(([lo, hi]) => [lo + base, hi + base]),
-    }));
+  const rootPc = pitchClass(minorRootNote);
+  const base = ((rootPc - OPEN_STRING_PC[0]) + 12) % 12;
+  return PENTATONIC_BOXES.map((box, i) => ({
+    number: i + 1,
+    frets: box.map(([lo, hi]) => [lo + base, hi + base]),
+  }));
 }
