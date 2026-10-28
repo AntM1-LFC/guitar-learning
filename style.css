@@ -170,7 +170,16 @@ main {
 }
 
 /* --- Pentatonic shapes --- */
-.section-note { color: var(--text-dim); font-size: 0.9rem; margin: -8px 0 14px; }
+.section-note {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 18px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--panel-border);
+  border-radius: 6px;
+}
 .pentabox-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
