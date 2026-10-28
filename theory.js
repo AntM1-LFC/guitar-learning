@@ -120,22 +120,61 @@ function diatonicChords(root, mode, extension = 'triad') {
 }
 
 // Common progressions, as indices into the 7 diatonic chords (0-based).
+// `songs` are well-known tracks commonly cited as using this progression
+// (sometimes in a different key, or with minor variations) — a starting
+// point for ear-training, not a claim of exact transcription.
 const MAJOR_PROGRESSIONS = [
-  { name: 'Pop (I–V–vi–IV)', degrees: [0, 4, 5, 3] },
-  { name: 'Classic Rock (I–IV–V)', degrees: [0, 3, 4] },
-  { name: 'Emotional Pop (vi–IV–I–V)', degrees: [5, 3, 0, 4] },
-  { name: "50s Progression (I–vi–IV–V)", degrees: [0, 5, 3, 4] },
-  { name: 'Jazz Cadence (ii–V–I)', degrees: [1, 4, 0] },
-  { name: 'Folk (I–IV–vi–V)', degrees: [0, 3, 5, 4] },
-  { name: '12-Bar Blues (I–IV–V)', degrees: [0, 0, 0, 0, 3, 3, 0, 0, 4, 3, 0, 4] },
+  {
+    name: 'Pop (I–V–vi–IV)', degrees: [0, 4, 5, 3],
+    songs: ["Let It Be — The Beatles", "No Woman No Cry — Bob Marley", "With or Without You — U2", "Don't Stop Believin' — Journey", "Someone Like You — Adele"],
+  },
+  {
+    name: 'Classic Rock (I–IV–V)', degrees: [0, 3, 4],
+    songs: ['Twist and Shout — The Beatles', 'Louie Louie — The Kingsmen', 'Wild Thing — The Troggs', 'La Bamba — Ritchie Valens', 'Sweet Home Alabama — Lynyrd Skynyrd'],
+  },
+  {
+    name: 'Emotional Pop (vi–IV–I–V)', degrees: [5, 3, 0, 4],
+    songs: ['Apologize — OneRepublic', 'Poker Face — Lady Gaga', 'Umbrella — Rihanna', 'Grenade — Bruno Mars', 'Complicated — Avril Lavigne'],
+  },
+  {
+    name: "50s Progression (I–vi–IV–V)", degrees: [0, 5, 3, 4],
+    songs: ['Stand By Me — Ben E. King', 'Blue Moon — Rodgers & Hart (standard)', 'Earth Angel — The Penguins', 'Unchained Melody — The Righteous Brothers', 'Duke of Earl — Gene Chandler'],
+  },
+  {
+    name: 'Jazz Cadence (ii–V–I)', degrees: [1, 4, 0],
+    songs: ['Autumn Leaves (jazz standard)', 'Fly Me to the Moon — Frank Sinatra', 'All the Things You Are (jazz standard)', 'Take the A Train — Duke Ellington', 'Satin Doll — Duke Ellington'],
+  },
+  {
+    name: 'Folk (I–IV–vi–V)', degrees: [0, 3, 5, 4],
+    songs: ["I'm Yours — Jason Mraz", 'She Will Be Loved — Maroon 5', 'Love Story — Taylor Swift', 'Africa — Toto', 'Hey, Soul Sister — Train'],
+  },
+  {
+    name: '12-Bar Blues (I–IV–V)', degrees: [0, 0, 0, 0, 3, 3, 0, 0, 4, 3, 0, 4],
+    songs: ['Johnny B. Goode — Chuck Berry', 'Sweet Home Chicago (traditional)', 'Hound Dog — Elvis Presley', 'Rock Around the Clock — Bill Haley', 'Pride and Joy — Stevie Ray Vaughan'],
+  },
 ];
 
 const MINOR_PROGRESSIONS = [
-  { name: 'Andalusian Cadence (i–VII–VI–V)', degrees: [0, 6, 5, 4] },
-  { name: 'Epic Minor (i–VI–III–VII)', degrees: [0, 5, 2, 6] },
-  { name: 'Simple Minor (i–iv–v)', degrees: [0, 3, 4] },
-  { name: 'Minor Pop (i–iv–VII–III)', degrees: [0, 3, 6, 2] },
-  { name: 'Minor Loop (i–VI–VII)', degrees: [0, 5, 6] },
+  {
+    name: 'Andalusian Cadence (i–VII–VI–V)', degrees: [0, 6, 5, 4],
+    songs: ['Hit the Road Jack — Ray Charles', 'Sultans of Swing — Dire Straits', 'Stray Cat Strut — Stray Cats', 'Walk Don\'t Run — The Ventures', 'While My Guitar Gently Weeps — The Beatles'],
+  },
+  {
+    name: 'Epic Minor (i–VI–III–VII)', degrees: [0, 5, 2, 6],
+    songs: ['Zombie — The Cranberries', 'House of the Rising Sun — The Animals', 'Nothing Else Matters — Metallica', 'Numb — Linkin Park', 'Chop Suey! — System of a Down'],
+  },
+  {
+    name: 'Simple Minor (i–iv–v)', degrees: [0, 3, 4],
+    songs: ['Black Magic Woman — Santana', 'Oye Como Va — Santana', 'Summertime (Gershwin standard)', 'Voodoo Child (Slight Return) — Jimi Hendrix', 'Riders on the Storm — The Doors'],
+  },
+  {
+    name: 'Minor Pop (i–iv–VII–III)', degrees: [0, 3, 6, 2],
+    songs: ['Losing My Religion — R.E.M.', 'Everybody Hurts — R.E.M.', 'In the End — Linkin Park', 'Breaking the Habit — Linkin Park', 'Behind Blue Eyes — The Who'],
+  },
+  {
+    name: 'Minor Loop (i–VI–VII)', degrees: [0, 5, 6],
+    songs: ['All Along the Watchtower — Bob Dylan / Jimi Hendrix', 'Hotel California — Eagles', 'Stairway to Heaven — Led Zeppelin', 'Paint It Black — The Rolling Stones', 'Smooth Criminal — Michael Jackson'],
+  },
 ];
 
 // ---------------------------------------------------------------------------

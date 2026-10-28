@@ -226,6 +226,38 @@ main {
 /* --- Progressions --- */
 .progression-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .progression-chords { display: flex; flex-wrap: wrap; gap: 14px; }
+.progression-songs {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--panel-border);
+}
+.progression-songs-label {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.progression-songs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px 16px;
+}
+.progression-songs-list li {
+  font-size: 0.92rem;
+  color: var(--text);
+  padding-left: 14px;
+  position: relative;
+}
+.progression-songs-list li::before {
+  content: '♪';
+  position: absolute;
+  left: 0;
+  color: var(--accent-2);
+}
 
 footer {
   text-align: center;

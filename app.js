@@ -523,6 +523,27 @@ function renderProgressionDetail() {
     row.appendChild(card);
   });
   wrap.appendChild(row);
+
+  if (prog.songs && prog.songs.length) {
+    const songsWrap = document.createElement('div');
+    songsWrap.className = 'progression-songs';
+
+    const label = document.createElement('div');
+    label.className = 'progression-songs-label';
+    label.textContent = 'Songs that use this progression';
+    songsWrap.appendChild(label);
+
+    const songList = document.createElement('ul');
+    songList.className = 'progression-songs-list';
+    prog.songs.forEach(song => {
+      const li = document.createElement('li');
+      li.textContent = song;
+      songList.appendChild(li);
+    });
+    songsWrap.appendChild(songList);
+
+    wrap.appendChild(songsWrap);
+  }
 }
 
 // --- Wire up static controls --------------------------------------------
