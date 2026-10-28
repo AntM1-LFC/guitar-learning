@@ -224,3 +224,30 @@ function scaleIntervalSet(rootNote, type) {
   else intervals = [0, 2, 4, 5, 7, 9, 11]; // fallback, unused directly
   return new Set(intervals.map(iv => (rootPc + iv) % 12));
 }
+
+// ---------------------------------------------------------------------------
+// The 5 minor-pentatonic "box" shapes (the standard positions guitarists
+// learn to connect up the neck). Derived directly from the scale's interval
+// structure in standard tuning: for each string, the 5 in-scale frets per
+// octave are found and sorted; box N uses that string's (N-1)th/Nth
+// consecutive pair. This is interval math, not memorized tab, so it's
+// correct for any root by construction.
+// ---------------------------------------------------------------------------
+
+const PENTATONIC_BOXES = [
+    [[0, 3], [0, 2], [0, 2], [0, 2], [0, 3], [0, 3]],      // Box 1
+    [[3, 5], [2, 5], [2, 5], [2, 4], [3, 5], [3, 5]],      // Box 2
+    [[5, 7], [5, 7], [5, 7], [4, 7], [5, 8], [5, 7]],      // Box 3
+    [[7, 10], [7, 10], [7, 9], [7, 9], [8, 10], [7, 10]],  // Box 4
+    [[10, 12], [10, 12], [9, 12], [9, 12], [10, 12], [10, 12]], // Box 5
+  ];
+
+// minorRootNote: the minor tonic's plain note name, e.g. "A" for A minor.
+function pentatonicBoxShapes(minorRootNote) {
+    const rootPc = pitchClass(minorRootNote);
+    const base = ((rootPc - OPEN_STRING_PC[0]) + 12) % 12;
+    return PENTATONIC_BOXES.map((box, i) => ({
+          number: i + 1,
+          frets: box.map(([lo, hi]) => [lo + base, hi + base]),
+    }));
+}
