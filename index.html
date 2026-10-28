@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guitar Theory Companion</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>🎸 Guitar Theory Companion</h1>
+    <p class="tagline">Keys, scales, chord progressions &amp; the circle of fifths — all in one place.</p>
+  </header>
+
+  <main>
+
+    <!-- WHEEL + KEY SELECTOR -->
+    <section class="panel wheel-panel">
+      <div class="panel-head">
+        <h2>Choose a key</h2>
+        <div class="wheel-toggle">
+            <button id="mode-cof" class="toggle-btn active">Circle of Fifths</button>
+          <button id="mode-camelot" class="toggle-btn">Camelot Wheel</button>
+          </div>
+        </div>
+
+        <div class="wheel-area">
+          <svg id="wheel" viewBox="0 0 440 440" aria-label="Circle of fifths wheel">
+            <!-- populated by JS -->
+          </svg>
+
+          <div class="key-readout">
+            <div class="key-readout-big" id="key-readout-big">C Major</div>
+            <div class="key-readout-sub" id="key-readout-sub">relative: A minor &middot; Camelot 8B</div>
+            <div class="mode-switch">
+              <button id="set-major" class="mini-btn active">Major</button>
+              <button id="set-minor" class="mini-btn">Minor</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCALES -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Scales</h2>
+          <div class="scale-tabs" id="scale-tabs"></div>
+        </div>
+        <div class="scale-notes" id="scale-notes"></div>
+        <div class="fretboard-wrap">
+          <svg id="fretboard" viewBox="0 0 900 220" aria-label="Fretboard diagram"></svg>
+        </div>
+      </section>
+
+      <!-- DIATONIC CHORDS -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Diatonic chords</h2>
+        </div>
+        <div class="chord-grid" id="diatonic-chords"></div>
+      </section>
+
+      <!-- PROGRESSIONS -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Chord progressions</h2>
+        </div>
+        <div class="progression-list" id="progression-list"></div>
+        <div class="progression-detail" id="progression-detail"></div>
+      </section>
+
+    </main>
+
+    <footer>
+      Built for learning — not a substitute for a real teacher, but a decent practice companion.
+    </footer>
+
+    <script src="theory.js"></script>
+    <script src="app.js"></script>
+  </body>
+  </html>
+  
